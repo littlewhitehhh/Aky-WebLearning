@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <script src="./06_receiver参数的作用.js"></script> -->
+    <script>
+        const obj = {
+            name: "why",
+            age: 18,
+        };
+        // let value = obj.name
+        // Object.defineProperty(obj, "name", {
+        //     get: function() {
+        //         console.log(this);
+        //         console.log("监听到obj对象的name属性被访问了")
+        //         return value
+        //     },
+        //     set: function(newValue) {
+        //         console.log(this);
+        //         console.log("监听到obj对象的name属性被设置值")
+        //         value = newValue
+
+        //     }
+        // })
+        const objProxy = new Proxy(obj, {
+            get(target, key) { //target:obj  key  ,  receiver 
+                // console.log(arguments);
+                console.log(`监听到${key}被访问了`, key);
+                // return target[key]
+                return Reflect.get(target, key)
+            },
+            set(target, key, newValue) { //target:obj , key  , newValue,  receiver
+                // console.log(arguments); 
+                console.log(`监听到${key}被修改了`, key);
+                // target[key] = newValue
+                Reflect.set(target, key, newValue)
+
+            }
+        })
+        console.log(objProxy.name);
+        objProxy.name = 'lyh'
+        console.log(obj.name);
+        console.log(objProxy.age);
+        objProxy.age = 22
+        console.log(obj.age);
+    </script>
+</body>
+
+</html>

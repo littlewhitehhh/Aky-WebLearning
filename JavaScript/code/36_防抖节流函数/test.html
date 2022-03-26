@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <input type="text">
+    <script>
+        const inputEl = document.querySelectorAll("input")
+        let counter = 0
+
+        const inputChange = function(event) {
+            console.log(`发送了第${++counter}次网络请求`, this, event)
+
+        }
+
+
+        function debounce(fn, delay) {
+            let timer = null
+
+            return _debounce = function(...args) {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.apply(this, args)
+                    console.log(timer);
+                }, delay)
+
+            }
+
+        }
+        // inputEl.oninput = inputChange
+        inputEl[0].oninput = debounce(inputChange, 1000)
+        inputEl[1].oninput = debounce(inputChange, 1000)
+    </script>
+</body>
+
+</html>

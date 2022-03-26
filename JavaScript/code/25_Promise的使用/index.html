@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="./14_Promise类方法-any.js"></script>
+    <!-- <script src="./23_手写Promise-race-any方法.js"></script> -->
+    <script>
+        // class Person {
+        //     constructor() {
+        //         debugger
+        //         // console.log(this);
+        //         setTimeout(() => {
+        //             // debugger
+        //             console.log(this);
+        //         }, 0)
+
+
+        //     }
+        //     then(value, reason) {
+        //         this.value = value
+        //         this.reason = reason
+        //         return [this.value, this.reason]
+        //     }
+        // }
+
+        // const p = new Person()
+        // console.log(p.then(100, 500));
+        // console.log(p);
+
+        var obj = {
+            name: 'why',
+            foo() {
+                window.setTimeout(() => {
+                    console.log(this);
+                }, 1000)
+            },
+            bar() {
+                setTimeout(function() {
+                    console.log(this);
+                }, 1000)
+            }
+
+        }
+
+        obj.foo()
+        obj.bar()
+    </script>
+</body>
+
+</html>
